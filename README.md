@@ -166,7 +166,8 @@ pnpm run dev
 
 ## Self-Versioning
 
-This repository uses its own versioning tool for managing releases. The following scripts are available:
+This repository uses its own versioning tool for managing releases. The
+following scripts are available:
 
 ### Version Management Scripts
 
@@ -197,8 +198,10 @@ pnpm next-patch-version
 ### Versioning Workflow
 
 1. **Development**: Make commits following conventional commit format
-2. **Current Version**: Run `pnpm version:current` to update package.json with current version
-3. **Release**: Run `pnpm version:release` to generate changelog and update version
+2. **Current Version**: Run `pnpm version:current` to update package.json with
+   current version
+3. **Release**: Run `pnpm version:release` to generate changelog and update
+   version
 4. **Tag**: Create a git tag for the new version (e.g., `git tag v0.0.2`)
 5. **Publish**: Publish the package to npm
 
