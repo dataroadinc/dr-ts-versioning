@@ -164,6 +164,63 @@ pnpm test
 pnpm run dev
 ```
 
+## Self-Versioning
+
+This repository uses its own versioning tool for managing releases. The following scripts are available:
+
+### Version Management Scripts
+
+```bash
+# Get current version (updates package.json)
+pnpm version:current
+
+# Get next patch version
+pnpm version:next
+
+# Generate changelog and update current version
+pnpm version:release
+```
+
+### CLI Tools
+
+```bash
+# Update package version based on git history
+pnpm update-package-version
+
+# Generate changelog from conventional commits
+pnpm generate-changelog
+
+# Get next patch version (for CI/CD)
+pnpm next-patch-version
+```
+
+### Versioning Workflow
+
+1. **Development**: Make commits following conventional commit format
+2. **Current Version**: Run `pnpm version:current` to update package.json with current version
+3. **Release**: Run `pnpm version:release` to generate changelog and update version
+4. **Tag**: Create a git tag for the new version (e.g., `git tag v0.0.2`)
+5. **Publish**: Publish the package to npm
+
+### Example Workflow
+
+```bash
+# Make some changes and commit
+git commit -m "feat(api): add new endpoint"
+
+# Update package.json with current version (e.g., 0.0.1+1)
+pnpm version:current
+
+# When ready to release
+pnpm version:release  # Generates CHANGELOG.md and updates version
+
+# Create git tag for the new version
+git tag v0.0.2
+
+# Publish to npm
+pnpm publish
+```
+
 ## License
 
 MIT
