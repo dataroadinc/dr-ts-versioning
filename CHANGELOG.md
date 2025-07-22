@@ -1,6 +1,13 @@
 # Changelog
 
-## v0.0.1+1 (2025-07-23)
+## v0.0.1+2 (2025-07-23)
+
+### Docs
+
+**Documentation:**
+
+- add self-versioning documentation and workflow ([0ed946f](https://github.com/dataroadinc/dr-ts-versioning/commit/0ed946f29cfc700ba34c9c5193196988c0efe444))
+  
 
 ### Versioning
 
@@ -22,6 +29,8 @@
 
 **Documentation:**
 
+- add self-versioning documentation and workflow ([0ed946f](https://github.com/dataroadinc/dr-ts-versioning/commit/0ed946f29cfc700ba34c9c5193196988c0efe444))
+  
 - update cursor rules formatting ([8ee4b37](https://github.com/dataroadinc/dr-ts-versioning/commit/8ee4b37699fa75574b94e2de0ad58d24c2c82f83))
   
 - update README formatting ([21fb047](https://github.com/dataroadinc/dr-ts-versioning/commit/21fb047aac19f0ebcdb4bdfed7b01632984927ac))
