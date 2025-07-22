@@ -69,7 +69,6 @@ if (!isValid(data)) {
   designed
 - **Log Before Throwing**: Provide debugging information in error logs
 
-
 ### For AI Agents
 
 When writing code, always prefer throwing descriptive errors over:
