@@ -11,13 +11,15 @@ Reusable versioning and changelog utilities for monorepos and CI environments.
 
 ## Opinionated Assumptions & Conventions
 
-This library makes several opinionated assumptions about your project structure and conventions:
+This library makes several opinionated assumptions about your project structure
+and conventions:
 
 ### Git Conventions
 
 - **Branch Naming**: The main branch should be named `main` (not `master`)
 - **Tag Format**: Git tags should be prefixed with `v` (e.g., `v1.0.0`)
-- **Conventional Commits**: Commits should follow the [Conventional Commits](https://www.conventionalcommits.org/) specification
+- **Conventional Commits**: Commits should follow the
+  [Conventional Commits](https://www.conventionalcommits.org/) specification
 
 ### Commit Type Labels
 
@@ -26,14 +28,14 @@ The changelog generator uses predefined labels for commit types:
 ```typescript
 const TYPE_LABELS = {
   feat: "Features",
-  docs: "Documentation", 
+  docs: "Documentation",
   content: "Content",
   partners: "Partners",
   test: "Tests",
   build: "Build System",
   deps: "Dependencies",
   style: "Style",
-  perf: "Performance"
+  perf: "Performance",
 }
 ```
 
@@ -47,10 +49,13 @@ The following commit types are automatically excluded from changelog generation:
 
 ### Version Calculation Logic
 
-- **Main Branch**: When on `main` branch, versions follow the pattern `base+count` (e.g., `1.0.0+5`)
-- **Feature Branches**: When on other branches, versions follow the pattern `base-branch+count` (e.g., `1.0.0-feature-branch+3`)
+- **Main Branch**: When on `main` branch, versions follow the pattern
+  `base+count` (e.g., `1.0.0+5`)
+- **Feature Branches**: When on other branches, versions follow the pattern
+  `base-branch+count` (e.g., `1.0.0-feature-branch+3`)
 - **No Tags**: If no git tags exist, falls back to `package.json` version
-- **Patch Increment**: `getNextPatchVersion()` always increments the patch number
+- **Patch Increment**: `getNextPatchVersion()` always increments the patch
+  number
 
 ### File Structure Assumptions
 
@@ -68,12 +73,17 @@ Generated changelogs follow this structure:
 ## v1.0.1 (2024-01-15)
 
 ### Features
+
 **Features:**
+
 - Add new API endpoint ([abc1234](https://github.com/owner/repo/commit/abc1234))
 
-### Documentation  
+### Documentation
+
 **Documentation:**
-- Update README with new examples ([def5678](https://github.com/owner/repo/commit/def5678))
+
+- Update README with new examples
+  ([def5678](https://github.com/owner/repo/commit/def5678))
 ```
 
 ## Installation
