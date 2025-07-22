@@ -90,3 +90,7 @@ jspm_packages/
 
 # TernJS port file
 .tern-port 
+
+# Changelog, we don't save that in the repo because
+# we can generate it from the commit history at release time
+CHANGELOG.md
