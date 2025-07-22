@@ -12,7 +12,7 @@
  *     run: pnpm --reporter=silent next-patch-version >> $GITHUB_OUTPUT
  *   # Then use as ${{ steps.version.outputs.version }}
  */
-import { getNextPatchVersion } from "./version-utils"
+import { getNextPatchVersion } from "./version-utils.js"
 
 function main(): void {
   console.log(`version=${getNextPatchVersion()}`)

@@ -2,7 +2,7 @@
 import { execSync } from "child_process"
 import { readFileSync, writeFileSync } from "fs"
 import path from "path"
-import { getCurrentVersion } from "./version-utils"
+import { getCurrentVersion } from "./version-utils.js"
 
 function getRepoRoot(): string {
   try {
