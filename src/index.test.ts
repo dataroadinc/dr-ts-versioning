@@ -14,7 +14,7 @@ describe("dr-ts-versioning", () => {
     const version = getCurrentVersion()
     expect(version).toBeDefined()
     expect(typeof version).toBe("string")
-    // Should match semver format
-    expect(version).toMatch(/^\d+\.\d+\.\d+$/)
+    // Should match semver format (with optional build metadata)
+    expect(version).toMatch(/^\d+\.\d+\.\d+(?:\+[0-9]+)?$/)
   })
 })
