@@ -12,7 +12,7 @@
  *     run: pnpm current-version >> $GITHUB_OUTPUT
  *   # Then use as ${{ steps.version.outputs.version }}
  */
-import { getCurrentVersion } from "./version-utils"
+import { getCurrentVersion } from "./version-utils.js"
 
 function main(): void {
   console.log(`version=${getCurrentVersion()}`)
