@@ -1,4 +1,4 @@
-# dr-ts-versioning
+# @dataroadinc/versioning
 
 Reusable versioning and changelog utilities for monorepos and CI environments.
 
@@ -89,7 +89,8 @@ Generated changelogs follow this structure:
 ## Installation
 
 ```bash
-pnpm add dr-ts-versioning
+pnpm add @dataroadinc/versioning
+
 ```
 
 ## Usage
@@ -98,16 +99,17 @@ pnpm add dr-ts-versioning
 
 ```bash
 # Update package version based on conventional commits
-npx dr-ts-versioning update-package-version
+npx @dataroadinc/versioning update-package-version
 
 # Generate changelog
-npx dr-ts-versioning generate-changelog
+npx @dataroadinc/versioning generate-changelog
 
 # Get current version
-npx dr-ts-versioning current-version
+npx @dataroadinc/versioning current-version
 
 # Get next patch version
-npx dr-ts-versioning next-patch-version
+npx @dataroadinc/versioning next-patch-version
+
 ```
 
 ### As a library
@@ -117,7 +119,7 @@ import {
   getCurrentVersion,
   getNextPatchVersion,
   generateChangelog,
-} from "dr-ts-versioning"
+} from "@dataroadinc/versioning"
 
 // Get current version from package.json
 const currentVersion = getCurrentVersion()
@@ -162,6 +164,7 @@ pnpm test
 
 # Watch mode for development
 pnpm run dev
+
 ```
 
 ## Self-Versioning
@@ -190,6 +193,7 @@ pnpm version:next
 
 # Generate changelog and update current version
 pnpm version:release
+
 ```
 
 **Note**: The `version:current` command can optionally update package.json with
@@ -208,6 +212,7 @@ pnpm generate-changelog
 
 # Get next patch version (for CI/CD)
 pnpm next-patch-version
+
 ```
 
 ### Versioning Workflow
@@ -237,6 +242,7 @@ git push origin feature-branch
 # - Create git tag (e.g., v0.0.2)
 # - Create GitHub release
 # - Publish to npm automatically
+
 ```
 
 ## License
