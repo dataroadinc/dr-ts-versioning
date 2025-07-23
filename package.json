@@ -21,7 +21,7 @@
         "generate-changelog": "node dist/generate-changelog.js",
         "version:current": "node dist/update-package-version.js",
         "version:next": "node dist/next-patch-version.js",
-        "version:release": "pnpm run generate-changelog && pnpm run version:current",
+        "version:release": "pnpm run version:current && pnpm run generate-changelog",
         "prepublishOnly": "pnpm run build",
         "lint": "eslint .",
         "lint:md": "markdownlint '**/*.md'",
