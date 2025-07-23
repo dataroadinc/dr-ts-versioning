@@ -83,8 +83,11 @@ The system formats commits into a structured changelog:
 Generate a changelog for the current version:
 
 ```bash
-npx generate-changelog
+# Using pnpm (recommended)
+pnpm exec generate-changelog
 
+# Using npx
+npx generate-changelog
 ```
 
 ### Output to File
@@ -92,8 +95,11 @@ npx generate-changelog
 Save the changelog to a file:
 
 ```bash
-npx generate-changelog > CHANGELOG.md
+# Using pnpm (recommended)
+pnpm exec generate-changelog > CHANGELOG.md
 
+# Using npx
+npx generate-changelog > CHANGELOG.md
 ```
 
 ### Custom Range
@@ -102,14 +108,18 @@ Generate changelog for a specific version range:
 
 ```bash
 # Since a specific tag
-npx generate-changelog --since v1.0.0
+pnpm exec generate-changelog --since v1.0.0
 
 # Since a specific commit
-npx generate-changelog --since abc1234
+pnpm exec generate-changelog --since abc1234
 
 # Between two versions
-npx generate-changelog --since v1.2.0 --until v1.3.0
+pnpm exec generate-changelog --since v1.2.0 --until v1.3.0
 
+# Using npx (alternative)
+npx generate-changelog --since v1.0.0
+npx generate-changelog --since abc1234
+npx generate-changelog --since v1.2.0 --until v1.3.0
 ```
 
 ## Changelog Format
@@ -290,7 +300,7 @@ jobs:
       - run: pnpm install
 
       - name: Generate changelog
-        run: npx generate-changelog > CHANGELOG.md
+        run: pnpm exec generate-changelog > CHANGELOG.md
 
       - name: Create release
         uses: actions/create-release@v1
@@ -315,7 +325,7 @@ generate_changelog:
 
     - pnpm install
 
-    - npx generate-changelog > CHANGELOG.md
+    - pnpm exec generate-changelog > CHANGELOG.md
 
     - |
 
@@ -342,17 +352,17 @@ generate_changelog:
 set -e
 
 echo "Generating changelog..."
-npx generate-changelog > CHANGELOG.md
+pnpm exec generate-changelog > CHANGELOG.md
 
 echo "Updating version..."
-npx update-package-version
+pnpm exec update-package-version
 
 echo "Committing changes..."
 git add package.json CHANGELOG.md
 git commit -m "chore(release): bump version and update changelog"
 
 echo "Creating tag..."
-VERSION=$(npx next-patch-version)
+VERSION=$(pnpm exec next-patch-version)
 git tag v$VERSION
 
 echo "Pushing changes..."
@@ -403,11 +413,14 @@ Filter commits by scope or type:
 
 ```bash
 # Only show features and bug fixes
-npx generate-changelog --types feat,fix
+pnpm exec generate-changelog --types feat,fix
 
 # Only show commits for specific scopes
-npx generate-changelog --scopes api,cli
+pnpm exec generate-changelog --scopes api,cli
 
+# Using npx (alternative)
+npx generate-changelog --types feat,fix
+npx generate-changelog --scopes api,cli
 ```
 
 ## Troubleshooting
@@ -455,7 +468,7 @@ If the changelog formatting is incorrect:
 3. **Run with debug**: Use debug mode to see parsing details
 
    ```bash
-   DEBUG=* npx generate-changelog
+   DEBUG=* pnpm exec generate-changelog
    ```
 
 ## Best Practices
@@ -477,7 +490,7 @@ Generate changelogs regularly:
 
 ```bash
 # Before each release
-npx generate-changelog > CHANGELOG.md
+pnpm exec generate-changelog > CHANGELOG.md
 git add CHANGELOG.md
 git commit -m "chore(release): update changelog"
 
@@ -489,7 +502,7 @@ Always review generated changelogs:
 
 ```bash
 # Generate and review
-npx generate-changelog > CHANGELOG.md
+pnpm exec generate-changelog > CHANGELOG.md
 cat CHANGELOG.md
 
 ```
