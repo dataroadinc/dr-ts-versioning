@@ -27,6 +27,8 @@ jobs:
               run: corepack enable && corepack prepare pnpm@10.10.0 --activate
             - name: Install dependencies
               run: pnpm install --frozen-lockfile
+            - name: Build project
+              run: pnpm run build
             - name: Get next patch version
               id: version
               run: pnpm --reporter=silent next-patch-version >> $GITHUB_OUTPUT
