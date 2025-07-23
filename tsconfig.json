@@ -14,8 +14,12 @@
         "outDir": "./dist",
         "rootDir": "./src",
         "removeComments": true,
-        "noEmit": false
+        "noEmit": false,
+        "baseUrl": "./src",
+        "paths": {
+            "@/*": ["./*"]
+        }
     },
     "include": ["src/**/*"],
-    "exclude": ["node_modules", "dist", "**/*.test.ts"]
+    "exclude": ["node_modules", "dist"]
 }
