@@ -92,15 +92,18 @@ npx generate-changelog
 
 ### Output to File
 
-Save the changelog to a file:
+The changelog is automatically written to `CHANGELOG.md` in the project root:
 
 ```bash
 # Using pnpm (recommended)
-pnpm exec generate-changelog > CHANGELOG.md
+pnpm exec generate-changelog
 
 # Using npx
-npx generate-changelog > CHANGELOG.md
+npx generate-changelog
 ```
+
+**Note**: The command automatically creates/updates `CHANGELOG.md` in the
+project root. No output redirection is needed.
 
 ### Custom Range
 
@@ -300,7 +303,7 @@ jobs:
       - run: pnpm install
 
       - name: Generate changelog
-        run: pnpm exec generate-changelog > CHANGELOG.md
+        run: pnpm exec generate-changelog
 
       - name: Create release
         uses: actions/create-release@v1
@@ -325,7 +328,7 @@ generate_changelog:
 
     - pnpm install
 
-    - pnpm exec generate-changelog > CHANGELOG.md
+    - pnpm exec generate-changelog
 
     - |
 
@@ -352,7 +355,7 @@ generate_changelog:
 set -e
 
 echo "Generating changelog..."
-pnpm exec generate-changelog > CHANGELOG.md
+pnpm exec generate-changelog
 
 echo "Updating version..."
 pnpm exec update-package-version
@@ -490,7 +493,7 @@ Generate changelogs regularly:
 
 ```bash
 # Before each release
-pnpm exec generate-changelog > CHANGELOG.md
+pnpm exec generate-changelog
 git add CHANGELOG.md
 git commit -m "chore(release): update changelog"
 
@@ -502,7 +505,7 @@ Always review generated changelogs:
 
 ```bash
 # Generate and review
-pnpm exec generate-changelog > CHANGELOG.md
+pnpm exec generate-changelog
 cat CHANGELOG.md
 
 ```

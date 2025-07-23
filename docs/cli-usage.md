@@ -100,7 +100,8 @@ npx generate-changelog
 1. Analyzes conventional commits since the last version
 2. Groups commits by type (feat, fix, docs, etc.)
 3. Formats commits into a readable changelog
-4. Outputs the changelog to stdout
+4. Writes the changelog to `CHANGELOG.md` in the project root
+5. Outputs the changelog to stdout
 
 **Example output**:
 
@@ -186,7 +187,7 @@ jobs:
       - run: pnpm install
 
       - name: Generate changelog
-        run: pnpm exec generate-changelog > CHANGELOG.md
+        run: pnpm exec generate-changelog
 
       - name: Update version
         run: pnpm exec update-package-version
@@ -214,7 +215,7 @@ release:
 
     - pnpm install
 
-    - pnpm exec generate-changelog > CHANGELOG.md
+    - pnpm exec generate-changelog
 
     - pnpm exec update-package-version
 
