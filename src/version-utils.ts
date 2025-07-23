@@ -50,20 +50,14 @@ export function getCurrentVersion(): string {
   const tag = getLatestTag()
   const base = tag.replace(/^v/, "")
   const count = getCommitCountSinceTag(tag)
-  const branch = getCurrentBranch()
 
   // If no git tags exist, use package.json version
   if (tag === "v0.0.0" && count === 0) {
     return getPackageVersion()
   }
 
-  let version: string
-  if (branch === "main") {
-    version = count === 0 ? base : `${base}+${count}`
-  } else {
-    const safeBranch = branch.replace(/\//g, "-")
-    version = `${base}-${safeBranch}+${count}`
-  }
+  // Always use base version with build metadata, regardless of branch
+  const version = count === 0 ? base : `${base}+${count}`
   return version
 }
 
