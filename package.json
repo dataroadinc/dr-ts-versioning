@@ -1,69 +1,69 @@
 {
-  "name": "dr-ts-versioning",
-  "version": "0.0.2",
-  "type": "module",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "bin": {
-    "update-package-version": "dist/update-package-version.js",
-    "next-patch-version": "dist/next-patch-version.js",
-    "generate-changelog": "dist/generate-changelog.js"
-  },
-  "scripts": {
-    "build": "tsc",
-    "dev": "tsc --watch",
-    "clean": "rm -rf dist",
-    "prebuild": "pnpm run clean",
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "update-package-version": "node dist/update-package-version.js",
-    "next-patch-version": "node dist/next-patch-version.js",
-    "generate-changelog": "node dist/generate-changelog.js",
-    "version:current": "node dist/update-package-version.js",
-    "version:next": "node dist/next-patch-version.js",
-    "version:release": "pnpm run generate-changelog && pnpm run version:current",
-    "prepublishOnly": "pnpm run build",
-    "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.mjs",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
-    "prepare": "husky"
-  },
-  "description": "Reusable versioning and changelog utilities for monorepos and CI",
-  "keywords": [
-    "versioning",
-    "changelog",
-    "semver",
-    "ci",
-    "monorepo",
-    "release"
-  ],
-  "author": "DataRoad",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/dataroadinc/dr-ts-versioning.git"
-  },
-  "bugs": {
-    "url": "https://github.com/dataroadinc/dr-ts-versioning/issues"
-  },
-  "homepage": "https://github.com/dataroadinc/dr-ts-versioning#readme",
-  "devDependencies": {
-    "@commitlint/cli": "^19.8.1",
-    "@commitlint/config-conventional": "^19.8.1",
-    "@eslint/eslintrc": "^3.3.1",
-    "@types/node": "^24.0.13",
-    "@typescript-eslint/eslint-plugin": "^8.15.0",
-    "@typescript-eslint/parser": "^8.15.0",
-    "eslint": "^9.31.0",
-    "eslint-config-prettier": "^10.1.5",
-    "husky": "^9.1.7",
-    "prettier": "^3.6.2",
-    "typescript": "^5.8.3",
-    "vitest": "^3.2.4"
-  },
-  "engines": {
-    "node": ">=22.0.0",
-    "pnpm": ">=10.0.0"
-  },
-  "packageManager": "pnpm@10.10.0"
+    "name": "dr-ts-versioning",
+    "version": "0.0.2",
+    "type": "module",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "bin": {
+        "update-package-version": "dist/update-package-version.js",
+        "next-patch-version": "dist/next-patch-version.js",
+        "generate-changelog": "dist/generate-changelog.js"
+    },
+    "scripts": {
+        "build": "tsc",
+        "dev": "tsc --watch",
+        "clean": "rm -rf dist",
+        "prebuild": "pnpm run clean",
+        "test": "vitest run",
+        "test:watch": "vitest",
+        "update-package-version": "node dist/update-package-version.js",
+        "next-patch-version": "node dist/next-patch-version.js",
+        "generate-changelog": "node dist/generate-changelog.js",
+        "version:current": "node dist/update-package-version.js",
+        "version:next": "node dist/next-patch-version.js",
+        "version:release": "pnpm run generate-changelog && pnpm run version:current",
+        "prepublishOnly": "pnpm run build",
+        "lint": "eslint . --ext .ts,.tsx,.js,.jsx,.mjs",
+        "format": "prettier --write .",
+        "format:check": "prettier --check .",
+        "prepare": "husky"
+    },
+    "description": "Reusable versioning and changelog utilities for monorepos and CI",
+    "keywords": [
+        "versioning",
+        "changelog",
+        "semver",
+        "ci",
+        "monorepo",
+        "release"
+    ],
+    "author": "DataRoad",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/dataroadinc/dr-ts-versioning.git"
+    },
+    "bugs": {
+        "url": "https://github.com/dataroadinc/dr-ts-versioning/issues"
+    },
+    "homepage": "https://github.com/dataroadinc/dr-ts-versioning#readme",
+    "devDependencies": {
+        "@commitlint/cli": "^19.8.1",
+        "@commitlint/config-conventional": "^19.8.1",
+        "@eslint/eslintrc": "^3.3.1",
+        "@types/node": "^24.0.13",
+        "@typescript-eslint/eslint-plugin": "^8.15.0",
+        "@typescript-eslint/parser": "^8.15.0",
+        "eslint": "^9.31.0",
+        "eslint-config-prettier": "^10.1.5",
+        "husky": "^9.1.7",
+        "prettier": "^3.6.2",
+        "typescript": "^5.8.3",
+        "vitest": "^3.2.4"
+    },
+    "engines": {
+        "node": ">=22.0.0",
+        "pnpm": ">=10.0.0"
+    },
+    "packageManager": "pnpm@10.10.0"
 }
