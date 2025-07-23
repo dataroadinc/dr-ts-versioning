@@ -198,12 +198,14 @@ pnpm next-patch-version
 ### Versioning Workflow
 
 1. **Development**: Make commits following conventional commit format
-2. **Current Version**: Run `pnpm version:current` to update package.json with
-   current version
-3. **Release**: Run `pnpm version:release` to generate changelog and update
-   version
-4. **Tag**: Create a git tag for the new version (e.g., `git tag v0.0.2`)
-5. **Publish**: Publish the package to npm
+2. **Current Version**: Run `pnpm version:current` to see current version (optional)
+3. **Release**: Create a PR and merge to main
+4. **Automated Release**: The release workflow will:
+   - Generate changelog
+   - Calculate next version
+   - Create git tag
+   - Create GitHub release
+   - Publish to npm
 
 ### Example Workflow
 
@@ -211,17 +213,14 @@ pnpm next-patch-version
 # Make some changes and commit
 git commit -m "feat(api): add new endpoint"
 
-# Update package.json with current version (e.g., 0.0.1+1)
-pnpm version:current
+# Push to a feature branch and create PR
+git push origin feature-branch
 
-# When ready to release
-pnpm version:release  # Generates CHANGELOG.md and updates version
-
-# Create git tag for the new version
-git tag v0.0.2
-
-# Publish to npm
-pnpm publish
+# After PR is merged to main, the release workflow will:
+# - Generate CHANGELOG.md
+# - Create git tag (e.g., v0.0.2)
+# - Create GitHub release
+# - Publish to npm automatically
 ```
 
 ## License
