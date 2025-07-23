@@ -113,22 +113,52 @@ The following commit types are automatically excluded from changelog generation:
 
 ## Version Calculation Logic
 
-- **Main Branch**: When on `main` branch, versions follow the pattern
-  `base+count` (e.g., `1.0.0+5`)
-- **Feature Branches**: When on other branches, versions follow the pattern
-  `base-branch+count` (e.g., `1.0.0-feature-branch+3`)
+- **All Branches**: Versions follow the pattern `base+count` (e.g., `1.0.0+5`)
+- **No Branch Names**: Branch names are no longer included in version numbers
+- **Build Metadata**: The `+count` represents commits since the last tag
 - **No Tags**: If no git tags exist, falls back to `package.json` version
 - **Patch Increment**: `getNextPatchVersion()` always increments the patch
   number
+- **Clean Semver**: All versions are valid semantic versioning format
 
 ## CI/CD Integration
 
-In CI/CD pipelines:
+### Release Workflow (`.github/workflows/release.yml`)
 
-1. The `CHANGELOG.md` file is generated during builds
-2. It's included in the published package
-3. The file is properly gitignored to avoid committing it
-4. Version information is computed from git history
+The release workflow handles formal releases with the following sequence:
+
+1. **Build project** - Ensures all files are compiled
+2. **Get next patch version** - Determines the new version number
+3. **Create and push tag** - Creates git tag (e.g., `v0.0.2`)
+4. **Update package.json version** - Uses `pnpm version:current` with new tag
+5. **Rebuild with new version** - Ensures code uses updated version
+6. **Generate changelog** - Creates changelog with correct version info
+7. **Publish to NPM** - Publishes package with correct version
+8. **Create GitHub Release** - Creates release with changelog
+
+### CI Workflow (`.github/workflows/ci.yml`)
+
+The CI workflow handles continuous integration builds:
+
+1. **Build project** - Compiles TypeScript
+2. **Update package.json version** - Uses `pnpm version:current` for build
+   metadata
+3. **Publish to NPM** - Publishes with version like `0.0.1+5`
+
+### Key Differences
+
+- **Release Workflow**: Creates tags, generates changelogs, formal releases
+- **CI Workflow**: Build metadata only, no tags, continuous publishing
+- **Version Format**: Release uses `0.0.2`, CI uses `0.0.1+5`
+
+### Important Notes
+
+- **Build Step Required**: Version commands need built files in `dist/`
+  directory
+- **Version Order**: `pnpm version:current` must run after tag creation in
+  release workflow
+- **Clean Versions**: All versions are valid semver format without branch names
+- **NPM Publishing**: Both workflows publish to npmjs.org with correct versions
 
 ## Benefits
 
