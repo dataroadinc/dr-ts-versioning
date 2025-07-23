@@ -105,6 +105,10 @@ npx generate-changelog
 **Note**: The command automatically creates/updates `CHANGELOG.md` in the
 project root. No output redirection is needed.
 
+**Important**: It's recommended to add `CHANGELOG.md` to your `.gitignore` file
+to avoid committing generated changelogs to git. The changelog should be
+generated dynamically during releases rather than stored in version control.
+
 ### Custom Range
 
 Generate changelog for a specific version range:
@@ -476,7 +480,21 @@ If the changelog formatting is incorrect:
 
 ## Best Practices
 
-### 1. Consistent Commit Messages
+### 1. Gitignore Configuration
+
+Add `CHANGELOG.md` to your `.gitignore` file:
+
+```gitignore
+# Changelog, we don't save that in the repo because
+# we can generate it from the commit history at release time
+CHANGELOG.md
+```
+
+This prevents committing generated changelogs to git, keeping your repository
+clean and ensuring changelogs are always generated from the latest commit
+history.
+
+### 2. Consistent Commit Messages
 
 Use consistent conventional commit messages:
 
@@ -487,19 +505,17 @@ git commit -m "docs(readme): update installation guide"
 
 ```
 
-### 2. Regular Releases
+### 3. Regular Releases
 
-Generate changelogs regularly:
+Generate changelogs during releases (not during development):
 
 ```bash
-# Before each release
+# During release process
 pnpm exec generate-changelog
-git add CHANGELOG.md
-git commit -m "chore(release): update changelog"
-
+# CHANGELOG.md is generated but not committed to git
 ```
 
-### 3. Review Changelogs
+### 4. Review Changelogs
 
 Always review generated changelogs:
 
@@ -510,16 +526,16 @@ cat CHANGELOG.md
 
 ```
 
-### 4. Automate in CI/CD
+### 5. Automate in CI/CD
 
 Integrate changelog generation into your CI/CD pipeline:
 
 ```yaml
 - name: Generate changelog
-  run: npx generate-changelog > CHANGELOG.md
+  run: pnpm exec generate-changelog
 ```
 
-### 5. Use Meaningful Scopes
+### 6. Use Meaningful Scopes
 
 Use scopes to categorize changes:
 
