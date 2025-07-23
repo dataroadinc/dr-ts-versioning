@@ -80,6 +80,20 @@ The package provides several CLI commands for version management:
 - `next-patch-version` - Calculate the next patch version
 - `generate-changelog` - Generate changelog from conventional commits
 
+### Versioning System Insights
+
+**Clean Version Numbers**: The versioning system generates clean semantic
+versioning format (e.g., `0.0.1+5`) without branch names in the version number.
+
+**Build Metadata**: The `+count` suffix represents the number of commits since
+the last tag, providing unique build identifiers.
+
+**Version Order**: When using `pnpm version:release`, the version is updated
+first, then the changelog is generated to ensure correct version information.
+
+**CI/CD Integration**: The system works seamlessly with GitHub Actions workflows
+for both formal releases and continuous integration builds.
+
 ## Testing
 
 The project uses Vitest for testing:

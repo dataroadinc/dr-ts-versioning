@@ -121,7 +121,7 @@ You can integrate these commands into your package.json scripts:
   "scripts": {
     "version:current": "npx update-package-version",
     "version:next": "npx next-patch-version",
-    "version:release": "npx generate-changelog && npx update-package-version"
+    "version:release": "npx update-package-version && npx generate-changelog"
   }
 }
 ```
@@ -137,6 +137,8 @@ pnpm version:next
 
 # Generate changelog and update version
 pnpm version:release
+
+**Note**: The `version:release` script updates the version first, then generates the changelog. This ensures the changelog reflects the correct version information.
 
 ```
 
