@@ -198,7 +198,8 @@ pnpm next-patch-version
 ### Versioning Workflow
 
 1. **Development**: Make commits following conventional commit format
-2. **Current Version**: Run `pnpm version:current` to see current version (optional)
+2. **Current Version**: Run `pnpm version:current` to see current version
+   (optional)
 3. **Release**: Create a PR and merge to main
 4. **Automated Release**: The release workflow will:
    - Generate changelog
