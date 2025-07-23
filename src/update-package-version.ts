@@ -14,7 +14,7 @@ function getRepoRoot(): string {
   }
 }
 
-function main() {
+function main(): void {
   // Accept an optional version argument
   const versionArg = process.argv[2]
   const version = versionArg || getCurrentVersion()
