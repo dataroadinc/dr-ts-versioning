@@ -8,8 +8,14 @@ package.
 The CLI commands are available after installing the package:
 
 ```bash
+# Using pnpm (recommended)
 pnpm add @dataroadinc/versioning
 
+# Using npm
+npm install @dataroadinc/versioning
+
+# Using yarn
+yarn add @dataroadinc/versioning
 ```
 
 ## Available Commands
@@ -22,8 +28,11 @@ version.
 **Usage**:
 
 ```bash
-npx update-package-version
+# Using pnpm (recommended)
+pnpm exec update-package-version
 
+# Using npx
+npx update-package-version
 ```
 
 **What it does**:
@@ -50,8 +59,11 @@ Calculates and displays the next patch version without updating package.json.
 **Usage**:
 
 ```bash
-npx next-patch-version
+# Using pnpm (recommended)
+pnpm exec next-patch-version
 
+# Using npx
+npx next-patch-version
 ```
 
 **What it does**:
@@ -76,8 +88,11 @@ Generates a changelog from conventional commits.
 **Usage**:
 
 ```bash
-npx generate-changelog
+# Using pnpm (recommended)
+pnpm exec generate-changelog
 
+# Using npx
+npx generate-changelog
 ```
 
 **What it does**:
@@ -171,10 +186,10 @@ jobs:
       - run: pnpm install
 
       - name: Generate changelog
-        run: npx generate-changelog > CHANGELOG.md
+        run: pnpm exec generate-changelog > CHANGELOG.md
 
       - name: Update version
-        run: npx update-package-version
+        run: pnpm exec update-package-version
 
       - name: Create release
         uses: actions/create-release@v1
@@ -199,9 +214,9 @@ release:
 
     - pnpm install
 
-    - npx generate-changelog > CHANGELOG.md
+    - pnpm exec generate-changelog > CHANGELOG.md
 
-    - npx update-package-version
+    - pnpm exec update-package-version
 
     - git config user.email "ci@example.com"
 

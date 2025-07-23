@@ -25,12 +25,17 @@ pnpm version:next
 # Generate changelog and update version
 pnpm version:release
 
-# CLI commands
+# CLI commands (using pnpm)
+pnpm exec @dataroadinc/versioning current-version
+pnpm exec @dataroadinc/versioning next-patch-version
+pnpm exec @dataroadinc/versioning generate-changelog
+pnpm exec @dataroadinc/versioning update-package-version
+
+# CLI commands (using npx)
 npx @dataroadinc/versioning current-version
 npx @dataroadinc/versioning next-patch-version
 npx @dataroadinc/versioning generate-changelog
 npx @dataroadinc/versioning update-package-version
-
 ```
 
 ## How It Works
