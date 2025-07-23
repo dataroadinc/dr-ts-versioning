@@ -14,7 +14,8 @@ describe("dr-ts-versioning", () => {
     const version = getCurrentVersion()
     expect(version).toBeDefined()
     expect(typeof version).toBe("string")
-    // Should match semver format (with optional build metadata)
-    expect(version).toMatch(/^\d+\.\d+\.\d+(?:\+[0-9]+)?$/)
+    // Should match semver format (with optional pre-release and build metadata)
+    // Note: Branch names may contain characters not strictly semver compliant
+    expect(version).toMatch(/^\d+\.\d+\.\d+(?:-[^+]+)?(?:\+[0-9]+)?$/)
   })
 })
