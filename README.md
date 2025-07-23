@@ -166,12 +166,16 @@ pnpm run dev
 
 ## Self-Versioning
 
-This repository uses its own versioning tool for managing releases with a **stateless versioning approach**. This means:
+This repository uses its own versioning tool for managing releases with a
+**stateless versioning approach**. This means:
 
 - **Version Calculation**: Versions are calculated dynamically from git history
-- **No Git Storage**: Version numbers are not stored in package.json (optional updates only)
-- **CI/CD Integration**: Real versions are calculated at build time in GitHub Actions
-- **Automatic Releases**: Merging PRs to main triggers automatic versioning and publishing
+- **No Git Storage**: Version numbers are not stored in package.json (optional
+  updates only)
+- **CI/CD Integration**: Real versions are calculated at build time in GitHub
+  Actions
+- **Automatic Releases**: Merging PRs to main triggers automatic versioning and
+  publishing
 
 The following scripts are available:
 
@@ -188,7 +192,10 @@ pnpm version:next
 pnpm version:release
 ```
 
-**Note**: The `version:current` command can optionally update package.json with the current version. This is useful when you want to update the version in git, but it's not required for stateless versioning. The real version will be calculated at build time in CI/CD.
+**Note**: The `version:current` command can optionally update package.json with
+the current version. This is useful when you want to update the version in git,
+but it's not required for stateless versioning. The real version will be
+calculated at build time in CI/CD.
 
 ### CLI Tools
 
