@@ -164,6 +164,8 @@ The CI workflow handles continuous integration builds:
   release workflow
 - **Clean Versions**: All versions are valid semver format without branch names
 - **NPM Publishing**: Both workflows publish to npmjs.org with correct versions
+- **Changelog Gitignore**: `CHANGELOG.md` should be in `.gitignore` to avoid
+  committing generated files
 
 ## Benefits
 

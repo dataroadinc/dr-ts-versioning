@@ -103,6 +103,9 @@ npx generate-changelog
 4. Writes the changelog to `CHANGELOG.md` in the project root
 5. Outputs the changelog to stdout
 
+**Note**: It's recommended to add `CHANGELOG.md` to your `.gitignore` file to
+avoid committing generated changelogs to git.
+
 **Example output**:
 
 ```bash
