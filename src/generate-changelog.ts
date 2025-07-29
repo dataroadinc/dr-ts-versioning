@@ -246,10 +246,10 @@ function main(): void {
 }
 
 function getStatelessVersion(latestTag: string, commitCount: number): string {
-  // Remove any +N from the tag if present (shouldn't be, but for safety)
-  const base = latestTag.replace(/^v/, "").split("+")[0]
-  // Only ever allow one +N, and only if commitCount > 0
-  return commitCount === 0 ? base : `${base}+${commitCount}`
+  // Remove any -N from the tag if present (shouldn't be, but for safety)
+  const base = latestTag.replace(/^v/, "").split("-")[0]
+  // Only ever allow one -N, and only if commitCount > 0
+  return commitCount === 0 ? base : `${base}-${commitCount}`
 }
 
 main()

@@ -56,8 +56,8 @@ export function getCurrentVersion(): string {
     return getPackageVersion()
   }
 
-  // Always use base version with build metadata, regardless of branch
-  const version = count === 0 ? base : `${base}+${count}`
+  // Always use base version with pre-release metadata, regardless of branch
+  const version = count === 0 ? base : `${base}-${count}`
   return version
 }
 
