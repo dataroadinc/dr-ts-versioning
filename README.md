@@ -280,6 +280,157 @@ git push origin feature-branch
 
 ```
 
+## GitHub Workflows
+
+This repository includes two GitHub workflows that demonstrate best practices
+for versioning and publishing:
+
+### CI Workflow (`.github/workflows/ci.yml`)
+
+**Purpose**: Handles testing, building, and publishing to npm.
+
+**Triggers**:
+
+- Push to `main` or `develop` branches
+- Pull requests to `main`
+
+**Jobs**:
+
+1. **Test**: Runs tests, linting, and type checking on multiple Node.js versions
+2. **Publish**: Publishes to npm (only on push to `main`)
+
+**Key Features**:
+
+- Publishes both direct pushes (`0.0.2-N`) and tagged releases (`0.0.2`)
+- Generates fresh changelog before publishing
+- Includes changelog in npm package
+- Supports direct pushes to main for quick releases
+
+**Example Usage**:
+
+```yaml
+# .github/workflows/ci.yml
+name: CI
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [22.x, 23.x, 24.x]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Test
+        run: pnpm test
+
+  publish:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          registry-url: "https://registry.npmjs.org"
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Build
+        run: pnpm run build
+      - name: Update version
+        run: pnpm version:current
+      - name: Generate changelog
+        run: pnpm run generate-changelog
+      - name: Remove CHANGELOG.md from .gitignore
+        run: sed -i '/CHANGELOG.md/d' .gitignore
+      - name: Publish to npm
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Restore .gitignore
+        run: echo "CHANGELOG.md" >> .gitignore
+```
+
+### Release Workflow (`.github/workflows/release.yml`)
+
+**Purpose**: Handles formal releases with version bumping and GitHub releases.
+
+**Triggers**:
+
+- Pull request merged to `main`
+
+**Jobs**:
+
+1. **Tag and Release**: Creates new version tag, generates changelog, creates
+   GitHub release
+
+**Key Features**:
+
+- Bumps patch version automatically
+- Creates git tags for releases
+- Generates changelog from conventional commits
+- Creates GitHub releases with changelog
+- Does NOT publish to npm (handled by CI workflow)
+
+**Example Usage**:
+
+```yaml
+# .github/workflows/release.yml
+name: Release
+on:
+  pull_request:
+    types: [closed]
+    branches: [main]
+
+jobs:
+  tag-and-release:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Build
+        run: pnpm run build
+      - name: Get next version
+        id: version
+        run: pnpm --reporter=silent next-patch-version >> $GITHUB_OUTPUT
+      - name: Create tag
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag v${{ steps.version.outputs.version }}
+          git push origin v${{ steps.version.outputs.version }}
+      - name: Update version
+        run: pnpm version:current
+      - name: Generate changelog
+        run: pnpm run generate-changelog
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.version.outputs.version }}
+          body_path: CHANGELOG.md
+```
+
+### Workflow Separation Benefits
+
+- **CI Workflow**: Handles all npm publishing (direct pushes + tagged releases)
+- **Release Workflow**: Handles version bumping and GitHub releases
+- **No Duplicate Publishes**: Only CI workflow publishes to npm
+- **Flexible Publishing**: Supports both quick releases (direct push) and formal
+  releases (PR merge)
+
 ## Breaking Changes
 
 ### v0.0.2 - Version Format Migration
