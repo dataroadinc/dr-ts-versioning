@@ -50,9 +50,9 @@ The following commit types are automatically excluded from changelog generation:
 ### Version Calculation Logic
 
 - **Main Branch**: When on `main` branch, versions follow the pattern
-  `base+count` (e.g., `1.0.0+5`)
+  `base-count` (e.g., `1.0.0-5`)
 - **Feature Branches**: When on other branches, versions follow the pattern
-  `base-branch+count` (e.g., `1.0.0-feature-branch+3`)
+  `base-branch-count` (e.g., `1.0.0-feature-branch-3`)
 - **No Tags**: If no git tags exist, falls back to `package.json` version
 - **Patch Increment**: `getNextPatchVersion()` always increments the patch
   number
