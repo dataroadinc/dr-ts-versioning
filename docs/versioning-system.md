@@ -154,7 +154,7 @@ The CI workflow handles continuous integration builds:
 
 - **Release Workflow**: Creates tags, generates changelogs, formal releases
 - **CI Workflow**: Build metadata only, no tags, continuous publishing
-- **Version Format**: Release uses `0.0.2`, CI uses `0.0.1+5`
+- **Version Format**: Release uses `0.0.2`, CI uses `0.0.1-5`
 
 ### Important Notes
 
