@@ -83,10 +83,10 @@ The package provides several CLI commands for version management:
 ### Versioning System Insights
 
 **Clean Version Numbers**: The versioning system generates clean semantic
-versioning format (e.g., `0.0.1+5`) without branch names in the version number.
+versioning format (e.g., `0.0.1-5`) without branch names in the version number.
 
-**Build Metadata**: The `+count` suffix represents the number of commits since
-the last tag, providing unique build identifiers.
+**Pre-release Metadata**: The `-count` suffix represents the number of commits
+since the last tag, providing unique pre-release identifiers.
 
 **Version Order**: When using `pnpm version:release`, the version is updated
 first, then the changelog is generated to ensure correct version information.

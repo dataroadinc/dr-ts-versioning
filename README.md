@@ -1,5 +1,14 @@
 # @dataroadinc/versioning
 
+[![npm version](https://img.shields.io/npm/v/@dataroadinc/versioning.svg)](https://www.npmjs.com/package/@dataroadinc/versioning)
+[![npm downloads](https://img.shields.io/npm/dm/@dataroadinc/versioning.svg)](https://www.npmjs.com/package/@dataroadinc/versioning)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![CI](https://github.com/dataroadinc/dr-ts-versioning/workflows/CI/badge.svg)](https://github.com/dataroadinc/dr-ts-versioning/actions?query=workflow%3ACI)
+[![Release](https://github.com/dataroadinc/dr-ts-versioning/actions/workflows/release.yml/badge.svg)](https://github.com/dataroadinc/dr-ts-versioning/actions/workflows/release.yml)
+[![Node.js Version](https://img.shields.io/node/v/@dataroadinc/versioning)](https://nodejs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-blue.svg)](https://www.typescriptlang.org/)
+[![pnpm](https://img.shields.io/badge/pnpm-10.10.0-orange.svg)](https://pnpm.io/)
+
 Reusable versioning and changelog utilities for monorepos and CI environments.
 
 ## Features
@@ -88,10 +97,36 @@ Generated changelogs follow this structure:
 
 ## Installation
 
-```bash
-pnpm add @dataroadinc/versioning
+> **Recommended:** Install as a devDependency unless you need to use this
+> package at runtime in your application code.
 
+### pnpm
+
+```bash
+pnpm add -D @dataroadinc/versioning   # devDependency (recommended)
+# or, if you need it at runtime:
+pnpm add @dataroadinc/versioning
 ```
+
+### npm
+
+```bash
+npm install --save-dev @dataroadinc/versioning   # devDependency (recommended)
+# or, if you need it at runtime:
+npm install @dataroadinc/versioning
+```
+
+### yarn
+
+```bash
+yarn add --dev @dataroadinc/versioning   # devDependency (recommended)
+# or, if you need it at runtime:
+yarn add @dataroadinc/versioning
+```
+
+> **Use as a devDependency** if you only use the CLI or scripts in CI/CD, not in
+> your app's runtime code. If you import it in your application code, use a
+> regular dependency.
 
 ## Usage
 
@@ -244,6 +279,25 @@ git push origin feature-branch
 # - Publish to npm automatically
 
 ```
+
+## Breaking Changes
+
+### v0.0.2 - Version Format Migration
+
+**⚠️ Breaking Change**: The version format has been changed from `+N` (build
+metadata) to `-N` (pre-release) format.
+
+**Why this change was necessary:**
+
+- npm strips `+N` build metadata during publish, causing version conflicts
+- The `-N` format is preserved by npm and is Semantic Versioning compliant
+- This ensures pre-release versions are properly published without conflicts
+
+**Migration for consumers:**
+
+- Update any version parsing logic to expect `-N` instead of `+N`
+- Update CI/CD pipelines that parse version strings
+- Examples: `0.0.2+3` → `0.0.2-3`
 
 ## License
 
