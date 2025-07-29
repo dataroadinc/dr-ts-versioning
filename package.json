@@ -44,7 +44,7 @@
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "https://github.com/dataroadinc/dr-ts-versioning.git"
+        "url": "git+https://github.com/dataroadinc/dr-ts-versioning.git"
     },
     "bugs": {
         "url": "https://github.com/dataroadinc/dr-ts-versioning/issues"
