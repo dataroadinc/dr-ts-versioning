@@ -52,6 +52,9 @@ jobs:
         needs: test
         runs-on: ubuntu-latest
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        permissions:
+            contents: read
+            id-token: write
         steps:
             - uses: actions/checkout@v4
               with:
@@ -84,8 +87,6 @@ jobs:
 
             - name: Publish to NPM
               run: npm publish --access public
-              env:
-                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
             - name: Restore .gitignore
               run: echo "CHANGELOG.md" >> .gitignore
