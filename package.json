@@ -5,6 +5,7 @@
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "bin": {
+        "current-version": "dist/current-version.js",
         "update-package-version": "dist/update-package-version.js",
         "next-patch-version": "dist/next-patch-version.js",
         "generate-changelog": "dist/generate-changelog.js"
@@ -16,6 +17,7 @@
         "prebuild": "pnpm run clean",
         "test": "vitest run",
         "test:watch": "vitest",
+        "current-version": "node dist/current-version.js",
         "update-package-version": "node dist/update-package-version.js",
         "next-patch-version": "node dist/next-patch-version.js",
         "generate-changelog": "node dist/generate-changelog.js",
