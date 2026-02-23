@@ -86,7 +86,9 @@ jobs:
               run: sed -i '/CHANGELOG.md/d' .gitignore
 
             - name: Publish to NPM
-              run: npm publish --access public
+              run:
+                  unset NODE_AUTH_TOKEN && npm publish --provenance --access
+                  public
 
             - name: Restore .gitignore
               run: echo "CHANGELOG.md" >> .gitignore
