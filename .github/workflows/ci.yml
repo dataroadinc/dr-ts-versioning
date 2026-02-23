@@ -65,7 +65,12 @@ jobs:
               uses: actions/setup-node@v4
               with:
                   node-version: "22.x"
-                  registry-url: "https://registry.npmjs.org"
+
+            - name: Remove token-based npm auth for trusted publishing
+              run: |
+                  if [ -n "${NPM_CONFIG_USERCONFIG:-}" ] && [ -f "$NPM_CONFIG_USERCONFIG" ]; then
+                      sed -i '/_authToken/d' "$NPM_CONFIG_USERCONFIG"
+                  fi
 
             - name: Install pnpm
               run: corepack enable && corepack prepare pnpm@10.10.0 --activate
@@ -86,9 +91,7 @@ jobs:
               run: sed -i '/CHANGELOG.md/d' .gitignore
 
             - name: Publish to NPM
-              run:
-                  unset NODE_AUTH_TOKEN && npm publish --provenance --access
-                  public
+              run: npm publish --provenance --access public
 
             - name: Restore .gitignore
               run: echo "CHANGELOG.md" >> .gitignore
