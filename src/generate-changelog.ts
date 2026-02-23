@@ -50,14 +50,11 @@ function getCommitsBetween(
   fromRef: string | null,
   toRef: string | null
 ): string[] {
-  let range = ""
-  if (fromRef && toRef) {
-    range = `${fromRef}..${toRef}`
-  } else if (fromRef) {
-    range = `${fromRef}..HEAD`
-  } else {
-    range = ""
-  }
+  const range = fromRef
+    ? toRef
+      ? `${fromRef}..${toRef}`
+      : `${fromRef}..HEAD`
+    : ""
   const log = execSync(`git log ${range} --format=%H%n%B%n==END==`, {
     encoding: "utf8",
   })
