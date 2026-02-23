@@ -64,13 +64,16 @@ jobs:
             - name: Use Node.js
               uses: actions/setup-node@v4
               with:
-                  node-version: "22.x"
+                  node-version: "24.x"
 
             - name: Remove token-based npm auth for trusted publishing
               run: |
                   if [ -n "${NPM_CONFIG_USERCONFIG:-}" ] && [ -f "$NPM_CONFIG_USERCONFIG" ]; then
                       sed -i '/_authToken/d' "$NPM_CONFIG_USERCONFIG"
                   fi
+
+            - name: Verify npm version
+              run: npm --version
 
             - name: Install pnpm
               run: corepack enable && corepack prepare pnpm@10.10.0 --activate
